@@ -5,6 +5,10 @@ type ServerConfig struct {
 	Port int
 }
 
+type DatabaseConfig struct {
+}
+
 type Config struct {
-	Server ServerConfig
+	Server   ServerConfig
+	Database DatabaseConfig
 }
