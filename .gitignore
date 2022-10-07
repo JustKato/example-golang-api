@@ -6,4 +6,7 @@
 *.test
 *.out
 
+# Ignore the configuration file
+config.json
+
 go.work
