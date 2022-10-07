@@ -1,20 +1,23 @@
 package main
 
 import (
-	"net/http"
+	"fmt"
 
+	"github.com/JustKato/example-golang-api/lib/conf"
+	v1 "github.com/JustKato/example-golang-api/lib/routes/v1"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 
 	// Load the configuration file
+	conf := conf.GetConfig()
 
 	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "pong",
-		})
-	})
-	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+
+	// Register v1 Routes
+	v1.HandleRoutes(r.Group("/v1"))
+
+	// Parse the server-side run
+	r.Run(fmt.Sprintf("%s:%v", conf.Server.Host, conf.Server.Port))
 }

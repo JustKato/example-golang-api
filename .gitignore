@@ -7,6 +7,6 @@
 *.out
 
 # Ignore the configuration file
-config.json
+.env
 
 go.work
